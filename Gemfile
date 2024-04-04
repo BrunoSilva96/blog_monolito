@@ -14,7 +14,6 @@ gem 'turbo-rails'
 
 gem 'bootsnap', require: false
 gem 'bootstrap'
-gem 'bootstrap-sass'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'sassc-rails'
@@ -23,15 +22,15 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-end
-
-group :development do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails', '~>4.0.1'
   gem 'rubocop', require: false
   gem 'shoulda-matchers', '~> 6.1'
+end
+
+group :development do
   gem 'web-console'
 end
 
