@@ -29,7 +29,7 @@ RSpec.describe '/users', type: :request do
   end
 
   describe 'PUT /users' do
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
 
     before do
       sign_in(user)
@@ -60,7 +60,7 @@ RSpec.describe '/users', type: :request do
   end
 
   describe 'DELETE /users' do
-    let!(:user) { FactoryBot.create(:user) }
+    let!(:user) { create(:user) }
 
     context 'when user is signed in' do
       before do
