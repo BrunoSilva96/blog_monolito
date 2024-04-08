@@ -21,17 +21,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @post.nil?
-      head :unauthorized
-    else
-      @post.destroy!
-    end
+    @post.destroy!
   end
 
   private
 
   def load_post
     @post = current_user.posts.find_by(id: params[:post][:id])
+    head :unauthorized if @post.nil?
   end
 
   def post_params
