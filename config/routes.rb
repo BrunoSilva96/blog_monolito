@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   resource :posts, only: %i[create update destroy]
+  resource :comments, only: %i[create update destroy]
 end

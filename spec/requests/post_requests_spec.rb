@@ -12,7 +12,7 @@ RSpec.describe '/posts', type: :request do
       it 'create a new Post' do
         post_params = FactoryBot.attributes_for(:post)
 
-        post posts_path, params: { post: { text: post_params[:text], user_id: user.id } }
+        post posts_path, params: { post: { text: post_params[:text] } }
 
         expect(response).to redirect_to(posts_path)
         expect(Post.count).to eq(1)
@@ -78,7 +78,7 @@ RSpec.describe '/posts', type: :request do
 
     context 'when user tries to delete another users post' do
       it 'does not delete the post' do
-        delete posts_path, params: { post: { id: post2.id, user: user2.id } }
+        delete posts_path, params: { post: { id: post2.id } }
 
         expect(response).to have_http_status(401)
         expect(Post.count).to eq(2)

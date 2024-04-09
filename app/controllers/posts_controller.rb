@@ -10,7 +10,6 @@ class PostsController < ApplicationController
       redirect_to posts_path
     else
       redirect_to posts_path, status: :unprocessable_entity
-
     end
   end
 
