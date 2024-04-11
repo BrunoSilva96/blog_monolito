@@ -2,6 +2,10 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_comment, only: %i[update destroy]
 
+  def index
+    @comments = Comment.all
+  end
+
   def create
     @comment = Comment.new(comment_params.merge(user_id: current_user&.id))
 
