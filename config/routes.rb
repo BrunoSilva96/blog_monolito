@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resource :posts, only: %i[create update destroy]
-  resource :comments, only: %i[create update destroy]
+  resource :posts, only: %i[show create update destroy] do
+    get :index, on: :collection
+  end
+
+  resource :comments, only: %i[create update destroy] do
+    get :index, on: :collection
+  end
 end
