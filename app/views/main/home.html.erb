@@ -3,6 +3,7 @@
   <%= button_to 'Sair', destroy_user_session_path, class:'btn btn-primary', method: :delete %>
   <%= link_to 'editar', edit_user_registration_path %>
 <% else %>
+<p><%= t('hello') %></p>
   <%= link_to 'Entrar', new_user_session_path %>
   <%= link_to 'Registrar-se', new_user_registration_path %>
 <% end %>
