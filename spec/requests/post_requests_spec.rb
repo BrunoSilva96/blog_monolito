@@ -17,6 +17,15 @@ RSpec.describe '/posts', type: :request do
         expect(response).to redirect_to(posts_path)
         expect(Post.count).to eq(1)
       end
+
+      it 'create a new Post with tags' do
+        post_params = FactoryBot.attributes_for(:post)
+
+        post posts_path, params: { post: { text: post_params[:text], tag_ids: [1, 2] } }
+
+        expect(response).to redirect_to(posts_path)
+        expect(Post.count).to eq(1)
+      end
     end
 
     context 'with invalid params' do
