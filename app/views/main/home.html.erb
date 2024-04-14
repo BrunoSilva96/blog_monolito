@@ -1,9 +1,32 @@
+
+<header class="bg-dark py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Sua Blog preferido</h1>
+      <p class="lead fw-normal text-white-50 mb-0">Compartilhe suas ideias!</p>
+    </div>
+  </div>
+</header>
+<section class="py-5">
 <% if user_signed_in? %>
-  <p>Bem-vindo, <%= current_user.email %>.</p>
+  <h1>Bem vindo a noisso blog</h1>
   <%= button_to 'Sair', destroy_user_session_path, class:'btn btn-primary', method: :delete %>
-  <%= link_to 'editar', edit_user_registration_path %>
 <% else %>
-<p><%= t('hello') %></p>
-  <%= link_to 'Entrar', new_user_session_path %>
-  <%= link_to 'Registrar-se', new_user_registration_path %>
+  <div class='py-5 mt-3'>
+    <div class="mt-5" data-aos="fade-right" data-aos-duration="1500">
+      <div class="container text-center text-dark">
+        <h1 >Seu novo Blog!</h1>
+        <h4>
+          Novo por aqui? não conhece nosso blog? 
+          Seu novo destino para inspiração e conhecimento! 
+          Seja bem-vindo(a) ao nosso blog! Aqui, você encontrará histórias envolventes, dicas úteis e um conteúdo inspirador. Junte-se à nossa comunidade de amantes das palavras.
+          Explore, conecte-se e deixe-se inspirar! Ainda não tem uma conta?</h4>
+        <div class='mt-5' data-aos='fade-up' data-aos-duration='1800'>
+          <h3>Não tem conta ainda?</h3>
+          <%= link_to 'Registrar-se', new_user_registration_path, class: 'btn btn-info' %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
+</section>
