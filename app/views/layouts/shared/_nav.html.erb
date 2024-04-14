@@ -6,10 +6,14 @@
         <li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="<%= root_path %>">Posts</a></li>
       </ul>
       <form class="d-flex">
-        <button class="btn btn-outline-dark" type="submit">
-            <i class="bi bi-person-circle"></i>
-            Login
-        </button>
+        <% if user_signed_in? %>
+        <%= link_to ' Settings', settings_path, class: 'btn btn-outline-dark bi bi-gear-fill' %>
+        <div class='px-3' >
+          <%= button_to '  Logout', destroy_user_session_path, class:'btn btn-outline-dark bi bi-box-arrow-right px-3', method: :delete %>
+        </div>
+        <% else %>
+          <%= link_to ' Login', new_user_session_path, class: 'btn btn-outline-dark bi bi-person-circle ' %>
+        <% end %>
       </form>
     </div>
   </div>
