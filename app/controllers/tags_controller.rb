@@ -2,8 +2,7 @@ class TagsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_tag, only: %i[show update destroy]
 
-  def show
-  end
+  def show; end
 
   def create
     @tag = Tag.new(tag_params)
