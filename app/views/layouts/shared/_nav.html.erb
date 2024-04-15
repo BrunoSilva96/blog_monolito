@@ -3,18 +3,20 @@
     <a class="navbar-brand text-dark" href="<%= root_path %>">Blog Mono</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-        <li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="<%= root_path %>">Posts</a></li>
+        <li class="nav-item"><a class="nav-link active text-dark" aria-current="page" href="<%= posts_path %>">Posts</a></li>
       </ul>
-      <form class="d-flex">
+      <div class="d-flex">
         <% if user_signed_in? %>
-        <%= link_to ' Settings', settings_path, class: 'btn btn-outline-dark bi bi-gear-fill' %>
-        <div class='px-3' >
-          <%= button_to '  Logout', destroy_user_session_path, class:'btn btn-outline-dark bi bi-box-arrow-right px-3', method: :delete %>
-        </div>
+          <div>
+            <%= link_to ' Settings', settings_path, class: 'btn btn-outline-dark bi bi-gear-fill' %>
+          </div>
+          <div class='px-3' >
+            <%= button_to ' Sair', destroy_user_session_path, class:'btn btn-outline-dark bi bi-box-arrow-right', method: :delete %>
+          </div>
         <% else %>
           <%= link_to ' Login', new_user_session_path, class: 'btn btn-outline-dark bi bi-person-circle ' %>
         <% end %>
-      </form>
+      </div>
     </div>
   </div>
 </nav>
