@@ -1,16 +1,9 @@
 
-<header class="bg-dark py-5">
-  <div class="container px-4 px-lg-5 my-5">
-    <div class="text-center text-white">
-      <h1 class="display-4 fw-bolder">Sua Blog preferido</h1>
-      <p class="lead fw-normal text-white-50 mb-0">Compartilhe suas ideias!</p>
-    </div>
-  </div>
-</header>
+<%= render 'layouts/shared/header' %>
+
 <section class="py-5">
 <% if user_signed_in? %>
   <h1>Bem vindo a noisso blog</h1>
-  <%= button_to 'Sair', destroy_user_session_path, class:'btn btn-primary', method: :delete %>
 <% else %>
   <div class='py-5 mt-3'>
     <div class="mt-5" data-aos="fade-right" data-aos-duration="1500">
