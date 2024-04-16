@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_post, only: %i[update destroy]
+  before_action :load_post, only: %i[update destroy edit]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @posts = Post.includes(:comments).order(created_at: :desc).page(params[:page]).per(3)
   end
 
   def show
-    @post = Post.find_by_id(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def create
@@ -22,6 +23,8 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit; end
+
   def update
     @post.update(post_params_update)
 
@@ -35,7 +38,7 @@ class PostsController < ApplicationController
   private
 
   def load_post
-    @post = current_user.posts.find_by(id: params[:post][:id])
+    @post = current_user.posts.find_by(id: params[:id])
 
     head :unauthorized if @post.nil?
   end

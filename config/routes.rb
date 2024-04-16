@@ -11,9 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :posts, only: %i[show create update destroy] do
-    get :index, on: :collection
-  end
+  resources :posts
 
   resource :comments, only: %i[create update destroy] do
     get :index, on: :collection

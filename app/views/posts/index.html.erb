@@ -24,15 +24,16 @@
 </div>
 
 <% @posts.each do |post| %>
-  <div class="card mt-5 col-md-4 mx-auto col-lg-9 ">
+  <div class="card mt-5 col-md-4 mx-auto col-lg-9" data-aos="fade-left" data-aos-duration="1200">
     <div class="card-header bg-info"> Publicado Por: <strong> <%= post.user.name %> </strong> </div>
       <div class="card-body">
         <p>Aqui vai a foto do meliante</p>
         <div class="card-body" ><%= post.text %></div>
         <div class="d-grid gap-1 d-md-flex justify-content-md-end">
+        <%= link_to 'Comments', posts_path, class: "btn btn-dark" %>
         <% if user_post_delete?(post, current_user) %>
-          <%= button_to 'Delete', posts_path(post), method: :delete, class: "btn btn-outline-danger" %>
-          <%= link_to 'Edit', posts_path(post), method: :post, class: "btn btn-outline-success" %>
+          <%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-outline-danger" %>
+          <%= link_to 'Edit', edit_post_path(post), method: :post, class: "btn btn-outline-success" %>
         <% end %>
       </div>
     </div>
