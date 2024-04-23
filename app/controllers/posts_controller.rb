@@ -1,9 +1,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_post, only: %i[update destroy edit]
+  before_action :load_tags, only: %i[edit]
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
+    @all_tags = Tag.all
+
     @posts = Post.includes(:comments).order(created_at: :desc).page(params[:page]).per(3)
   end
 
@@ -33,9 +36,15 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy!
+
+    redirect_to posts_path
   end
 
   private
+
+  def load_tags
+    @tags = Tag.all.map { |tag| [tag.tag_text, tag.id] }
+  end
 
   def load_post
     @post = current_user.posts.find_by(id: params[:id])
@@ -44,7 +53,7 @@ class PostsController < ApplicationController
   end
 
   def post_params_update
-    params.require(:post).permit(:text)
+    params.require(:post).permit(:text, tag_ids: [])
   end
 
   def post_params
