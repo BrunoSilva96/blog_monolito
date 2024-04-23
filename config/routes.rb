@@ -17,5 +17,5 @@ Rails.application.routes.draw do
     get :index, on: :collection
   end
 
-  resource :tags, only: %i[create show update destroy]
+  resource :tags
 end
