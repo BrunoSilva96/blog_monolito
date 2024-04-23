@@ -2,6 +2,19 @@
 
 <div class="container mt-5">
   <div class="row align-items-cennter">
+    <div class="col-md-6 p-md-4 offset-md-3 border-5 rounded-5 bg-info">
+      <%= form_with url: search_path, method: :get, class:'navbar-form' do |form| %>
+        <div class="form-group">
+          <%= form.text_field :term, class:"form-control", placeholder:"Search for Tag" %>
+        </div>
+        <button type="submit" class="btn btn-outline-dark mt-1" > Submit </button>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row align-items-cennter">
     <% if user_signed_in?%>
       <div class="col-md-6 p-md-4 offset-md-3 border-5 rounded-5 bg-info">
         <h4>Compartilhe suas ideias e momentos!</h4>
@@ -14,6 +27,11 @@
                                         placeholder: "O que você está pensando?" %>
               <%= form.label :text, "O que você está pensando?", class: "form-label", for: "floatingTextArea" %>
             </div>
+              Tag: <%= form.collection_select(:tag_ids, @all_tags, :id, :tag_text, input_html:{multiple: true, class: "multiselect-bamboleio"}) %>
+
+              <div id="selectedTagsContainer">
+              </div>
+
             <input type="file" class="form-control-file px-2">
             <%= form.submit 'Publicar', class: "btn btn-outline-dark mb-1 px-5 mt-3 m-5", id: "button-addon1" %>
           </div>
@@ -28,6 +46,7 @@
     <div class="card-header bg-info"> Publicado Por: <strong> <%= post.user.name %> </strong> </div>
       <div class="card-body">
         <p>Aqui vai a foto do meliante</p>
+        Tags: <%= post.tags.pluck(:tag_text).to_sentence %><br>
         <div class="card-body" ><%= post.text %></div>
         <div class="d-grid gap-1 d-md-flex justify-content-md-end">
         <%= link_to 'Comments', posts_path, class: "btn btn-dark" %>

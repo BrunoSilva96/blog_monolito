@@ -1,0 +1,19 @@
+<% @tags.each do |tag| %>
+  <div class="card mt-5 col-md-4 mx-auto col-lg-9" data-aos="fade-left" data-aos-duration="1200">
+    <div class='card-header bg-info'>Criado em: <strong> <%= tag.created_at.to_formatted_s(:long) %> </strong><div>
+      <div class="card-body">
+        <div class="card-body" ><%= post.text %></div>
+        <div class="d-grid gap-1 d-md-flex justify-content-md-end">
+        <%= link_to 'Comments', posts_path, class: "btn btn-dark" %>
+        <% if user_post_delete?(post, current_user) %>
+          <%= button_to 'Delete', tag_path(tag), method: :delete, class: "btn btn-outline-danger" %>
+          <%= link_to 'Edit', edit_tag_path(tag), method: :tag, class: "btn btn-outline-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class='pagination justify-content-center mt-5 py-5'>
+  <%= paginate @tags %>
+</div>

@@ -1,0 +1,16 @@
+<%= render 'form' %>
+
+<% @tags.each do |tag| %>
+  <div class="card mt-5 col-md-4 mx-auto col-lg-9" data-aos="fade-left" data-aos-duration="1200">
+    <div class="card-header bg-info"> Criado: <strong>  <%= tag.created_at.to_formatted_s(:long) %> </strong> </div>
+    <div class="card-body">
+      <div class="card-body" ><%= tag.tag_text %></div>
+      <div class="d-grid gap-1 d-md-flex justify-content-md-end">
+    </div>
+    </div>
+  </div>
+<% end %>
+
+<div class='pagination justify-content-center mt-5 py-5'>
+  <%= paginate @tags %>
+</div>
