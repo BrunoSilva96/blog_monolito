@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search_tags'
   root 'main#home'
 
   devise_for :users
@@ -12,6 +13,8 @@ Rails.application.routes.draw do
   end
 
   resources :posts
+
+  get '/search', to: 'search#search_tags', as: 'search_tags'
 
   resource :comments, only: %i[create update destroy] do
     get :index, on: :collection

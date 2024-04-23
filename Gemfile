@@ -22,6 +22,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'i18n'
 gem 'kaminari'
+gem 'select2-rails'
 gem 'simple_form'
 
 group :development, :test do
@@ -43,4 +44,4 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem "cssbundling-rails", "~> 1.4"
+gem 'cssbundling-rails', '~> 1.4'

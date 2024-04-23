@@ -3,7 +3,7 @@
 <div class="container mt-5">
   <div class="row align-items-cennter">
     <div class="col-md-6 p-md-4 offset-md-3 border-5 rounded-5 bg-info">
-      <%= form_with url: search_path, method: :get, class:'navbar-form' do |form| %>
+      <%= form_with url: search_tags_path, method: :get, class:'navbar-form' do |form| %>
         <div class="form-group">
           <%= form.text_field :term, class:"form-control", placeholder:"Search for Tag" %>
         </div>
