@@ -2,7 +2,18 @@ class TagsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_tag, only: %i[show update destroy]
 
+  def index
+    @tags = Tag.order(created_at: :desc).page(params[:page]).per(10)
+  end
+
   def show; end
+
+  def new
+    @tags = Tag.order(created_at: :desc).page(params[:page]).per(10)
+    @tag = Tag.new
+  end
+
+  def edit; end
 
   def create
     @tag = Tag.new(tag_params)
@@ -27,7 +38,7 @@ class TagsController < ApplicationController
   private
 
   def load_tag
-    @tag = Tag.find_by_id(id: params[:id])
+    @tag = Tag.find_by(id: params[:id])
   end
 
   def tag_params
