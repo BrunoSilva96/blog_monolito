@@ -8,6 +8,10 @@
             <div class="input-group mb-3">
               <%= form.text_area :text, class: "form-control ", aria_describedby: "button-addon1", style: 'height: 100px;' %>
             </div>
+            Tags associadas: <%= @post.tags.pluck(:tag_text).to_sentence %><br>
+
+            <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_text) %>
+
             <%= form.submit 'Editar',class: "btn btn-outline-dark mb-2", id: "button-addon1" %>
           <% end %>
         </div>
