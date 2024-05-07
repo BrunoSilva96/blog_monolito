@@ -49,7 +49,7 @@
         Tags: <%= post.tags.pluck(:tag_text).to_sentence %><br>
         <div class="card-body" ><%= post.text %></div>
         <div class="d-grid gap-1 d-md-flex justify-content-md-end">
-        <%= link_to 'Comments', posts_path, class: "btn btn-dark" %>
+        <%= link_to 'Comments', post, class: "btn btn-dark" %>
         <% if user_post_delete?(post, current_user) %>
           <%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-outline-danger" %>
           <%= link_to 'Edit', edit_post_path(post), method: :post, class: "btn btn-outline-success" %>
