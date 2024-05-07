@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
   before_action :load_comment, only: %i[update destroy]
 
   def index
@@ -10,9 +9,9 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params.merge(user_id: current_user&.id))
 
     if @comment.save
-      redirect_to comments_path
+      redirect_to @comment.post
     else
-      redirect_to comments_path, status: :unprocessable_entity
+      redirect_to @comment.post, status: :unprocessable_entity
     end
   end
 
