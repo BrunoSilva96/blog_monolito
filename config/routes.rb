@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get '/search', to: 'search#search_tags', as: 'search_tags'
 
-  resource :comments, only: %i[create update destroy] do
+  resource :comments, except: %i[show update] do
     get :index, on: :collection
   end
 
