@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
   private
 
   def load_comment
-    @comment = current_user.comments.find_by(id: params[:comment][:id])
+    @comment = Comment.find(params[:id])
     head :unauthorized if @comment.nil?
   end
 

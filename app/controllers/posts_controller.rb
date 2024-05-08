@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_post, only: %i[update destroy edit]
   before_action :load_tags, only: %i[edit]
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @all_tags = Tag.all
