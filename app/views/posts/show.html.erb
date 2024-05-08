@@ -3,6 +3,7 @@
     <p> <%= t('models.published_by') %> <strong> <%= @post.user.name %> </strong> </p>
   </div>
   <div class="card-body">
+    Tags: <%= @post.tags.pluck(:tag_text).to_sentence %><br>
     <p class="card-text"> <%= @post.text %> </p>
   </div>
 </div>
@@ -21,6 +22,12 @@
       </div>
       <div class="card-body">
         <p class="card-text"><%= comment.text %></p>
+        <div class="d-grid gap-1 d-md-flex justify-content-md-end">
+          <% if user_post_delete?(@post, current_user) %>
+            <%= button_to 'Delete', comment_path(comment.id), method: :delete, class: "btn btn-outline-danger" %>
+            <%= link_to 'Edit', edit_comment_path(comment.id), method: :post, class: "btn btn-outline-success" %>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>
@@ -33,6 +40,6 @@
       <%= form.hidden_field :post_id, value: @post.id %>
       <%= form.text_area :text, class: "form-control", aria_describedby: "button-addon1" %>
     </div>
-    <%= form.submit 'Comentar', class: "btn btn-outline-primary mb-2", id: "button-addon1" %>
+    <%= form.submit 'Comentar', class: "btn btn-outline-dark mb-2", id: "button-addon1" %>
   <% end %>
 </div>
