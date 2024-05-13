@@ -23,7 +23,7 @@
       <div class="card-body">
         <p class="card-text"><%= comment.text %></p>
         <div class="d-grid gap-1 d-md-flex justify-content-md-end">
-          <% if user_post_delete?(@post, current_user) %>
+          <% if user_comment?(@post, comment, current_user) %>
             <%= button_to 'Delete', comment_path(comment.id), method: :delete, class: "btn btn-outline-danger" %>
             <%= link_to 'Edit', edit_comment_path(comment.id), method: :post, class: "btn btn-outline-success" %>
           <% end %>
