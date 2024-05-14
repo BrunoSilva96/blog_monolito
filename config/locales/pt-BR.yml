@@ -1,12 +1,44 @@
 ---
 pt-BR:
-  activerecord:
-    errors:
-      messages:
-        record_invalid: "A validação falhou: %{errors}"
-        restrict_dependent_destroy:
-          has_one: Não é possível excluir o registro pois existe um %{record} dependente
-          has_many: Não é possível excluir o registro pois existem %{record} dependentes
+  attributes:
+    home: Inicío
+    sign_out: " Sair"
+    sign_in: " Registrar-se"
+    register_account: Registrar conta
+    settings: " Configurações"
+    login: " Entrar"
+    search: "Buscar"
+    search_for_tag: "Buscar por Tag"
+  views:
+    pagination:
+      first: Primeira
+      last: Última
+      next: Próxima
+      previous: Anterior
+      truncate: "..."
+    models:
+      nickname: Apelido
+      see_comments: Ver Comentários
+      edit_profile: Editar perfil
+      delete_post: Deletar Post
+      edit: Editar
+      edit_post: Editar Post
+      comment: Comentar
+      comments: Comentários
+      publish: Publicar
+      published_by: "Publicado por:"
+      commented_by: "Comentado por:"
+      what_are_you_thinking: O que você está pensando?
+      what_do_you_want_to_change: O que deseja alterar?
+      what_do_you_want_to_comment: O que você deseja comentar?
+      min_password: Caracteres mínimos
+    activerecord:
+      errors:
+        messages:
+          record_invalid: "A validação falhou: %{errors}"
+          restrict_dependent_destroy:
+            has_one: Não é possível excluir o registro pois existe um %{record} dependente
+            has_many: Não é possível excluir o registro pois existem %{record} dependentes
   date:
     abbr_day_names:
       - dom

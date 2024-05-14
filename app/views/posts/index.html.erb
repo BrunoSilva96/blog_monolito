@@ -5,9 +5,9 @@
     <div class="col-md-6 p-md-4 offset-md-3 border-5 rounded-5 bg-info">
       <%= form_with url: search_tags_path, method: :get, class:'navbar-form' do |form| %>
         <div class="form-group">
-          <%= form.text_field :term, class:"form-control", placeholder:"Search for Tag" %>
+          <%= form.text_field :term, class:"form-control", placeholder:t('attributes.search_for_tag') %>
         </div>
-        <button type="submit" class="btn btn-outline-dark mt-1" > Submit </button>
+        <button type="submit" class="btn btn-outline-dark mt-1" ><%= t('attributes.search') %></button>
       <% end %>
     </div>
   </div>
@@ -24,8 +24,8 @@
                                         id: "floatingTextArea", 
                                         aria_describedby: "button-addon1",  
                                         style: "height: 150px;", 
-                                        placeholder: "O que você está pensando?" %>
-              <%= form.label :text, "O que você está pensando?", class: "form-label", for: "floatingTextArea" %>
+                                        placeholder: t('views.models.what_are_you_thinking') %>
+              <%= form.label :text, t('views.models.what_are_you_thinking'), class: "form-label", for: "floatingTextArea" %>
             </div>
               Tag: <%= form.collection_select(:tag_ids, @all_tags, :id, :tag_text, input_html:{multiple: true, class: "multiselect-bamboleio"}) %>
 
@@ -33,7 +33,7 @@
               </div>
 
             <input type="file" class="form-control-file px-2">
-            <%= form.submit 'Publicar', class: "btn btn-outline-dark mb-1 px-5 mt-3 m-5", id: "button-addon1" %>
+            <%= form.submit t('views.models.publish'), class: "btn btn-outline-dark mb-1 px-5 mt-3 m-5", id: "button-addon1" %>
           </div>
         <% end %>
       </div>
@@ -43,15 +43,15 @@
 
 <% @posts.each do |post| %>
   <div class="card mt-5 col-md-4 mx-auto col-lg-9" data-aos="fade-left" data-aos-duration="1200">
-    <div class="card-header bg-info"> Publicado Por: <strong> <%= post.user.name %> </strong> </div>
+    <div class="card-header bg-info"> <%= t('views.models.published_by') %> <strong> <%= post.user.name %> </strong> </div>
       <div class="card-body">
         Tags: <%= post.tags.pluck(:tag_text).to_sentence %><br>
         <div class="card-body" ><%= post.text %></div>
         <div class="d-grid gap-1 d-md-flex justify-content-md-end">
-        <%= link_to 'Comments', post, class: "btn btn-dark" %>
+        <%= link_to t('views.models.comments'), post, class: "btn btn-dark" %>
         <% if user_post_delete?(post, current_user) %>
-          <%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-outline-danger" %>
-          <%= link_to 'Edit', edit_post_path(post), method: :post, class: "btn btn-outline-success" %>
+          <%= button_to t('views.models.delete_post'), post_path(post), method: :delete, class: "btn btn-outline-danger" %>
+          <%= link_to  t('views.models.edit_post'), edit_post_path(post), method: :post, class: "btn btn-outline-success" %>
         <% end %>
       </div>
     </div>
