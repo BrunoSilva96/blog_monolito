@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :load_comment, only: %i[update destroy]
+  before_action :load_comment, only: %i[update destroy edit]
 
   def index
     @comments = Comment.all
@@ -15,10 +15,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit; end
+
   def update
     @comment.update(comment_params)
 
-    redirect_to comments_path if @comment.save!
+    redirect_to posts_path if @comment.save!
   end
 
   def destroy
