@@ -10,7 +10,7 @@
         <div class="card rounded-5 bg-info border" data-aos="fade-down" data-aos-duration="1700">
           <div class="card-body mt-4">
             <h2><%= current_user.name %></h2>
-            <%= image_tag user_avatar_url(current_user), class: 'mb-4 rounded-circle', width: 120 %>
+            <%= image_tag user_avatar_url(current_user), class: 'mb-4 rounded-circle', width: 120, height: 120%>
               
             <%= form_for current_user, url: update_user_settings_path, data: {turbo: false } do |f|%>
               <div class="form-group text-dark mt-2" >
