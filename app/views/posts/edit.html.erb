@@ -3,16 +3,16 @@
     <div class="row align-items-cennter">
       <% if user_signed_in?%>
         <div class="col-md-6 p-md-4 offset-md-3 border rounded-5 bg-info">
-          <h4><%= t('models.what_do_you_want_to_change') %></h4>
+          <h4><%= t('views.models.what_do_you_want_to_change') %></h4>
           <%= form_with model: @post, url: post_path do |form|  %>
             <div class="input-group mb-3">
               <%= form.text_area :text, class: "form-control ", aria_describedby: "button-addon1", style: 'height: 100px;' %>
             </div>
-            Tags associadas: <%= @post.tags.pluck(:tag_text).to_sentence %><br>
+            <%= t('views.screen.associations_tag') %>: <%= @post.tags.pluck(:tag_text).to_sentence %><br>
 
             <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_text) %>
 
-            <%= form.submit 'Editar',class: "btn btn-outline-dark mb-2", id: "button-addon1" %>
+            <%= form.submit t('views.models.edit'),class: "btn btn-outline-dark mb-2", id: "button-addon1" %>
           <% end %>
         </div>
       <% end %>

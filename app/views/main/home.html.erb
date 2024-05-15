@@ -5,22 +5,18 @@
 <% if user_signed_in? %>
   <div class="container px-4 px-lg-5 my-5">
     <div class="text-center">
-      <h1>Bem vindo a nosso blog</h1>
-    </div>
+      <h1> <%= t('views.screen.welcome_to_our_blog') %> </h1>
+    </div>  
   </div>
 <% else %>
   <div class='py-5 mt-3'>
     <div class="mt-5" data-aos="fade-right" data-aos-duration="1500">
       <div class="container text-center text-dark">
-        <h1 >Seu novo Blog!</h1>
-        <h4>
-          Novo por aqui? não conhece nosso blog? 
-          Seu novo destino para inspiração e conhecimento! 
-          Seja bem-vindo(a) ao nosso blog! Aqui, você encontrará histórias envolventes, dicas úteis e um conteúdo inspirador. Junte-se à nossa comunidade de amantes das palavras.
-          Explore, conecte-se e deixe-se inspirar! Ainda não tem uma conta?</h4>
+        <h1> <%= t('views.screen.your_blog') %> </h1>
+        <h4> <%= t('views.screen.apresentation_text') %> </h4>
         <div class='mt-5' data-aos='fade-up' data-aos-duration='1800'>
-          <h3>Não tem conta ainda?</h3>
-          <%= link_to t('attributes.sigs_in'), new_user_registration_path, class: 'btn btn-info' %>
+          <h3> <%= t('views.screen.dont_have_account') %> </h3>
+          <%= link_to t('attributes.sign_in'), new_user_registration_path, class: 'btn btn-info' %>
         </div>
       </div>
     </div>

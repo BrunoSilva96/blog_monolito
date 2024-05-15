@@ -1,6 +1,6 @@
 <div class="card mt-5 col-md-5 mx-auto col-lg-7">
   <div class="card-header bg-info">
-    <p> <%= t('models.published_by') %> <strong> <%= @post.user.name %> </strong> </p>
+    <p> <%= t('views.models.published_by') %> <strong> <%= @post.user.name %> </strong> </p>
   </div>
   <div class="card-body">
     Tags: <%= @post.tags.pluck(:tag_text).to_sentence %><br>
@@ -10,7 +10,7 @@
 
 <div class="card mt-5 mx-auto col-lg-3 mb-3">
   <div class="card-header text-center">
-    <h4><%= t('models.comments') %> </h4> 
+    <h4><%= t('views.models.comments') %> </h4> 
   </div>
 </div>
 
@@ -18,14 +18,14 @@
   <% @post.comments.each do |comment| %>
     <div class="card mt-3">
       <div class="card-header bg-info">
-        <%= t('models.commented_by') %> <strong> <%= comment.user&.name  || "Anônimo" %></strong>
+        <%= t('views.models.commented_by') %> <strong> <%= comment.user&.name  || "Anônimo" %></strong>
       </div>
       <div class="card-body">
         <p class="card-text"><%= comment.text %></p>
         <div class="d-grid gap-1 d-md-flex justify-content-md-end">
           <% if user_comment?(@post, comment, current_user) %>
-            <%= button_to 'Delete', comment_path(comment.id), method: :delete, class: "btn btn-outline-danger" %>
-            <%= link_to 'Edit', edit_comment_path(comment.id), method: :post, class: "btn btn-outline-success" %>
+            <%= button_to t('views.models.delete'), comment_path(comment.id), method: :delete, class: "btn btn-outline-danger" %>
+            <%= link_to t('views.models.edit'), edit_comment_path(comment.id), method: :post, class: "btn btn-outline-success" %>
           <% end %>
         </div>
       </div>
@@ -34,12 +34,12 @@
 </div>
 
 <div class="col-md-6 p-md-3 offset-md-3">
-  <h4><%= t('models.what_do_you_want_to_comment') %></h4>
+  <h4><%= t('views.models.what_do_you_want_to_comment') %></h4>
   <%= form_with model: @post.comments.new do |form|  %>
     <div class="input-group mb-3">
       <%= form.hidden_field :post_id, value: @post.id %>
       <%= form.text_area :text, class: "form-control", aria_describedby: "button-addon1" %>
     </div>
-    <%= form.submit 'Comentar', class: "btn btn-outline-dark mb-2", id: "button-addon1" %>
+    <%= form.submit t('views.models.comment'), class: "btn btn-outline-dark mb-2", id: "button-addon1" %>
   <% end %>
 </div>

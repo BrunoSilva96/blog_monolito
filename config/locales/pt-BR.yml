@@ -16,11 +16,26 @@ pt-BR:
       next: Próxima
       previous: Anterior
       truncate: "..."
+    screen:
+      welcome_to_our_blog: Bem vindo a nosso blog
+      apresentation_text: Novo por aqui? não conhece nosso blog?
+        Seu novo destino para inspiração e conhecimento!
+        Seja bem-vindo(a) ao nosso blog! Aqui, você encontrará histórias envolventes, dicas úteis e um conteúdo inspirador. Junte-se à nossa comunidade de amantes das palavras.
+        Explore, conecte-se e deixe-se inspirar! Ainda não tem uma conta?
+      your_blog: Seu novo Blog!
+      dont_have_account: Não tem conta ainda?
+      perfil_settings: Configurações do perfil
+      my_profile: Meu perfil
+      change_password: Alterar senha
+      choice_profile_image: Escolha uma imagem de perfil
+      create_tag: Criar tag
+      associations_tag: Tags associadas
     models:
       nickname: Apelido
       see_comments: Ver Comentários
       edit_profile: Editar perfil
       delete_post: Deletar Post
+      delete: Deletar
       edit: Editar
       edit_post: Editar Post
       comment: Comentar
