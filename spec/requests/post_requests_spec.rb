@@ -52,7 +52,7 @@ RSpec.describe '/posts', type: :request do
       end
 
       it 'updates Post' do
-        put posts_path, params: { post: { id: post.id, text: 'New post text' } }
+        put post_path(post), params: { post: { id: post.id, text: 'New post text' } }
 
         expect(response).to redirect_to(posts_path)
         expect(post.reload.text).to eq('New post text')
@@ -61,7 +61,7 @@ RSpec.describe '/posts', type: :request do
 
     context 'invalid params' do
       it 'does not update Post' do
-        put posts_path, params: { post: { id: post.id, text: nil } }
+        put post_path(post), params: { post: { id: post.id, text: nil } }
 
         expect { post.reload }.not_to(change { post.text })
       end
@@ -80,16 +80,16 @@ RSpec.describe '/posts', type: :request do
 
     context 'Delete post' do
       it 'delete Post with success' do
-        delete posts_path, params: { post: { id: post1.id } }
+        delete post_path(post1.id), params: { post: { id: post1.id } }
 
-        expect(response).to have_http_status(:no_content)
+        expect(response).to have_http_status(:found)
         expect(Post.count).to eq(1)
       end
     end
 
     context 'when user tries to delete another users post' do
       it 'does not delete the post' do
-        delete posts_path, params: { post: { id: post2.id } }
+        delete post_path(post2.id), params: { post: { id: post2.id } }
 
         expect(response).to have_http_status(401)
         expect(Post.count).to eq(2)

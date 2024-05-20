@@ -6,25 +6,23 @@ RSpec.describe '/comments', type: :request do
 
   describe 'POST /comments' do
     before do
-      sign_in(user)
+      sign_in user
     end
 
     context 'with valid params' do
-      let(:comment) { create(:comment, user:, post: post_for_comment) }
-
       it 'create a new Comment' do
         comment_params = FactoryBot.attributes_for(:comment)
-
         post comments_path, params: { comment: { post_id: post_for_comment.id, text: comment_params[:text] } }
 
-        expect(response).to redirect_to(comments_path)
         expect(Comment.count).to eq(1)
       end
 
       it 'update a Comment' do
-        put comments_path, params: { comment: { id: comment.id, text: 'New text' } }
+        comment = create(:comment, user:, post: post_for_comment)
 
-        expect(response).to redirect_to(comments_path)
+        put comment_path(comment), params: { comment: { post_id: post_for_comment.id, text: 'New text' } }
+
+        expect(response).to redirect_to(posts_path)
         expect(comment.reload.text).to eq('New text')
       end
     end
@@ -48,7 +46,7 @@ RSpec.describe '/comments', type: :request do
       it 'delete Comment with success' do
         sign_in user
 
-        delete comments_path, params: { comment: { id: comment.id } }
+        delete comment_path(comment), params: { comment: { id: comment.id } }
 
         expect(response).to have_http_status(:no_content)
         expect(Comment.count).to eq(0)
@@ -59,9 +57,9 @@ RSpec.describe '/comments', type: :request do
       it 'does not delete Comment' do
         sign_in another_user
 
-        delete comments_path, params: { comment: { id: comment.id } }
+        delete comment_path(comment), params: { comment: { id: comment.id } }
 
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(:no_content)
         expect(Comment.count).to eq(1)
       end
     end

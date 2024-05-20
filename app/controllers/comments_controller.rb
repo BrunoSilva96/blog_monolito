@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
   private
 
   def load_comment
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by_id(params[:id])
     head :unauthorized if @comment.nil?
   end
 
