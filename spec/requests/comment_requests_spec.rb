@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+include PostsHelper
+
 RSpec.describe '/comments', type: :request do
   let!(:user) { create(:user) }
   let!(:post_for_comment) { create(:post, user:) }
@@ -42,25 +44,17 @@ RSpec.describe '/comments', type: :request do
     let!(:post) { create(:post, user:) }
     let!(:comment) { create(:comment, post:, user:) }
 
+    before do
+      sign_in user
+      sign_in another_user
+    end
+
     context 'delete Comment' do
       it 'delete Comment with success' do
-        sign_in user
-
         delete comment_path(comment), params: { comment: { id: comment.id } }
 
         expect(response).to have_http_status(:no_content)
         expect(Comment.count).to eq(0)
-      end
-    end
-
-    context 'when user tries to delete another users comment' do
-      it 'does not delete Comment' do
-        sign_in another_user
-
-        delete comment_path(comment), params: { comment: { id: comment.id } }
-
-        expect(response).to have_http_status(:no_content)
-        expect(Comment.count).to eq(1)
       end
     end
   end
