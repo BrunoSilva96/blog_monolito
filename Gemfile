@@ -25,6 +25,9 @@ gem 'kaminari'
 gem 'select2-rails'
 gem 'simple_form'
 
+gem 'redis'
+gem 'sidekiq'
+
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
