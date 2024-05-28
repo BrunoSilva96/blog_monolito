@@ -15,14 +15,19 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-
-    @post.user_id = current_user.id
-
-    if @post.save
-      redirect_to posts_path
+    if params[:posts].present?
+      posts_params = params[:posts].map do |post_param|
+        post_param.permit(:text).merge(user_id: current_user.id)
+      end
+      PostsCreatorService.new(posts_params).call
+      redirect_to posts_path, notice: 'Posts estão sendo criados!'
     else
-      redirect_to posts_path, status: :unprocessable_entity
+      @post = Post.new(post_params.merge(user_id: current_user.id))
+      if @post.save
+        redirect_to posts_path
+      else
+        redirect_to posts_path, status: :unprocessable_entity
+      end
     end
   end
 

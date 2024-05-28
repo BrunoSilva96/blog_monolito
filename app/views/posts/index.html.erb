@@ -15,10 +15,13 @@
 
 <div class="container mt-5">
   <div class="row align-items-cennter">
-    <% if user_signed_in?%>
+    <% if user_signed_in? %>
+  <div class="container mt-5">
+    <div class="row align-items-center">
       <div class="col-md-6 p-md-4 offset-md-3 border-5 rounded-5 bg-info">
         <h4>Compartilhe suas ideias e momentos!</h4>
         <%= form_with model: @post do |form| %>
+          
             <div class="form-floating mb-2" style='height: 150px;'>
               <%= form.text_area :text, class: "form-control", 
                                         id: "floatingTextArea", 
@@ -27,17 +30,17 @@
                                         placeholder: t('views.models.what_are_you_thinking') %>
               <%= form.label :text, t('views.models.what_are_you_thinking'), class: "form-label", for: "floatingTextArea" %>
             </div>
-              Tag: <%= form.collection_select(:tag_ids, @all_tags, :id, :tag_text, input_html:{multiple: true, class: "multiselect-bamboleio"}) %>
-
-              <div id="selectedTagsContainer">
-              </div>
-
+            Tag: <%= form.collection_select(:tag_ids, @all_tags, :id, :tag_text, input_html: { multiple: true, class: "multiselect-bamboleio" }) %>
+            <div id="selectedTagsContainer">
+            </div>
             <input type="file" class="form-control-file px-2">
-            <%= form.submit t('views.models.publish'), class: "btn btn-outline-dark mb-1 px-5 mt-3 m-5", id: "button-addon1" %>
-          </div>
+         
+          <%= form.submit t('views.models.publish'), class: "btn btn-outline-dark mb-1 px-5 mt-3 m-5", id: "button-addon1" %>
         <% end %>
       </div>
-    <% end %>
+    </div>
+  </div>
+<% end %>
   </div>
 </div>
 

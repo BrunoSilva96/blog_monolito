@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   get 'search/search_tags'
   root 'main#home'
 
@@ -12,7 +15,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts
+  resources :posts do
+    collection do
+      post :create_multiple
+    end
+  end
 
   get '/search', to: 'search#search_tags', as: 'search_tags'
 
