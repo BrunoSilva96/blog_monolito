@@ -19,15 +19,15 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   user_name: 'a281ed1effc6ec',
-  #   password: '********ae1',
-  #   address: 'sandbox.smtp.mailtrap.io',
-  #   host: 'sandbox.smtp.mailtrap.io',
-  #   port: '2525',
-  #   authentication: :login
-  # }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: 'a281ed1effc6ec',
+    password: '2c1f22e775eae1',
+    address: 'sandbox.smtp.mailtrap.io',
+    host: 'sandbox.smtp.mailtrap.io',
+    port: '2525',
+    authentication: :login
+  }
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
