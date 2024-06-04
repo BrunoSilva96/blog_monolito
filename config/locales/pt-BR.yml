@@ -30,6 +30,7 @@ pt-BR:
       choice_profile_image: Escolha uma imagem de perfil
       create_tag: Criar tag
       associations_tag: Tags associadas
+      minimun_character: mínimo de caracteres
     models:
       nickname: Apelido
       see_comments: Ver Comentários
